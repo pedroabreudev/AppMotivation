@@ -1,10 +1,12 @@
-package br.com.diastecnologia.motivation
+package br.com.diastecnologia.motivation.ui
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import br.com.diastecnologia.motivation.R
+import br.com.diastecnologia.motivation.infra.MotivationConstants
 import br.com.diastecnologia.motivation.infra.SecurityPreferences
 import kotlinx.android.synthetic.main.activity_splash.*
 
@@ -35,7 +37,7 @@ class SplashActivity : AppCompatActivity(), View.OnClickListener {
     private fun handleSave() {
         val name = editName.text.toString()
         if (name != "") {
-            mSecurityPreferences.storeString("name", name)
+            mSecurityPreferences.storeString(MotivationConstants.KEY.PERSON_NAME, name)
             startActivity(Intent(this, MainActivity::class.java))
 
         } else {
