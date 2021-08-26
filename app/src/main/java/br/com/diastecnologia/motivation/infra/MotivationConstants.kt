@@ -8,7 +8,7 @@ class MotivationConstants private constructor(){
     object PHRASEFILTER{
         val ALL = 1
         val HAPPY = 2
-        val MORINING = 3
+        val MORNING = 3
     }
 
 }

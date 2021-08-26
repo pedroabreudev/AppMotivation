@@ -59,8 +59,10 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
+        android:layout_margin="16dp"
         android:layout_marginTop="32dp"
-        android:text="Frase!"
+        android:text="Frase"
+        android:textAlignment="center"
         android:textSize="22sp" />
 
     <View
@@ -73,11 +75,12 @@
 
     <Button
         android:id="@+id/buttonNewPhrase"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/ripple_button"
         android:padding="16dp"
         android:text="Nova frase"
         android:textColor="@color/white" />

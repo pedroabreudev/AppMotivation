@@ -6,22 +6,29 @@ import android.view.View
 import br.com.diastecnologia.motivation.R
 import br.com.diastecnologia.motivation.infra.MotivationConstants
 import br.com.diastecnologia.motivation.infra.SecurityPreferences
+import br.com.diastecnologia.motivation.repository.Mock
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     private lateinit var mSecurityPreferences: SecurityPreferences
+    private var mPhraseFilter: Int = MotivationConstants.PHRASEFILTER.ALL
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        mSecurityPreferences = SecurityPreferences(this)
-        textName.text = mSecurityPreferences.getString(MotivationConstants.KEY.PERSON_NAME)
-
         if (supportActionBar != null) {
             supportActionBar!!.hide()
         }
+
+        mSecurityPreferences = SecurityPreferences(this)
+        val name =  mSecurityPreferences.getString(MotivationConstants.KEY.PERSON_NAME)
+        textName.text = "Olá, $name!"
+
+        // Lógica inicial de seleção
+        imageAll.setColorFilter(resources.getColor(R.color.colorAccent))
+        handleNewPhrase()
 
         buttonNewPhrase.setOnClickListener(this)
         imageAll.setOnClickListener(this)
@@ -51,20 +58,25 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         when (id) {
             R.id.imageAll -> {
                 imageAll.setColorFilter(resources.getColor(R.color.colorAccent))
+                mPhraseFilter = MotivationConstants.PHRASEFILTER.ALL
+
 
             }
             R.id.imageHappy -> {
                 imageHappy.setColorFilter(resources.getColor(R.color.colorAccent))
+                mPhraseFilter = MotivationConstants.PHRASEFILTER.HAPPY
 
             }
             R.id.imageMorning -> {
                 imageMorning.setColorFilter(resources.getColor(R.color.colorAccent))
+                mPhraseFilter = MotivationConstants.PHRASEFILTER.MORNING
 
             }
         }
     }
 
     private fun handleNewPhrase() {
-        TODO("Not yet implemented")
+        val phrase = Mock().getPhrase(mPhraseFilter)
+        textPhrase.text = phrase
     }
 }
